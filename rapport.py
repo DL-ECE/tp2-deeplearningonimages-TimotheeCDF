@@ -189,7 +189,7 @@ def softmax(input_tensor: torch.Tensor)-> torch.Tensor:
 
 def target_to_one_hot(target: torch.Tensor, num_classes=10) -> torch.Tensor:
     """Create the one hot representation of the target"""
-    return F.one_hot(target.long(), num_classes)
+    return F.one_hot(target, num_classes)
 
 # However as mention above pytorch already has some built-ins function 
 
@@ -586,7 +586,8 @@ def display_10_images(dataset):
       else: break
 
   plt.show()
-if __name__ == "__main__":
+
+if __name__ == "__main__" :
     display_10_images(fmnist_train)
     display_10_images(fmnist_val)
 
@@ -631,9 +632,9 @@ class CNNModel(nn.Module):
     def __init__(self, classes=10):
         super().__init__()
 
-        self.conv1 = nn.Conv2d(1,    32, kernel_size = 3, padding = 1, stride = 1)
-        self.conv2 = nn.Conv2d(32,  64, kernel_size = 3, padding = 1, stride = 1)
-        self.conv3 = nn.Conv2d(64, 128, kernel_size = 3, padding = 1, stride = 1)
+        self.conv1 = nn.Conv2d(1,    64, kernel_size = 3, padding = 1, stride = 1)
+        self.conv2 = nn.Conv2d(64,  128, kernel_size = 3, padding = 1, stride = 1)
+        self.conv3 = nn.Conv2d(128, 128, kernel_size = 3, padding = 1, stride = 1)
         self.conv4 = nn.Conv2d(128,  32, kernel_size = 3, padding = 1, stride = 1)
 
         self.maxpool = nn.MaxPool2d(2, 2) # kernel_size stride
@@ -716,8 +717,8 @@ if __name__ == "__main__":
     # Network Hyperparameters 
     minibatch_size = 1000
     nepoch = 15
-    learning_rate = 0.03
-    momentum = 0.8
+    learning_rate = 0.025
+    momentum = 0.7
 
     model = CNNModel()
     model.to(device)
