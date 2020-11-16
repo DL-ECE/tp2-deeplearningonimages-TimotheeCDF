@@ -586,9 +586,9 @@ def display_10_images(dataset):
       else: break
 
   plt.show()
-
-display_10_images(fmnist_train)
-display_10_images(fmnist_val)
+if __name__ == "__main__":
+    display_10_images(fmnist_train)
+    display_10_images(fmnist_val)
 
 """What is the shape of each images
 How many images do we have
